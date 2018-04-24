@@ -3,14 +3,17 @@ class PhrasesController < ApplicationController
 
   def index
     head 501
-    @phrases = Phrase.all
   end
 
   def show
+    set_meta_tags title: @phrase.content,
+                  description: @phrase.content
   end
 
   def new
     @phrase = Phrase.new
+    set_meta_tags title: 'Shout in text!',
+                  description: 'Display large text on your screen'
   end
 
   def edit

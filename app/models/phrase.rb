@@ -12,7 +12,7 @@ class Phrase < ApplicationRecord
   private
 
   def generate_hashid
-    while Phrase.find_by(hashid: self.hashid = SecureRandom.urlsafe_base64(8))
+    while Phrase.find_by(hashid: self.hashid = SecureRandom.urlsafe_base64(6))
     end
   end
 

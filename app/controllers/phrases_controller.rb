@@ -24,7 +24,7 @@ class PhrasesController < ApplicationController
 
     respond_to do |format|
       if @phrase.save || find_phrase
-        format.html { redirect_to find_phrase, notice: 'Phrase was successfully created.' }
+        format.html { redirect_to find_phrase }
         format.json { render :show, status: :created, location: find_phrase }
       elsif 
         format.html { render :new }

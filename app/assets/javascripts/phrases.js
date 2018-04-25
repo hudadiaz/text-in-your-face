@@ -37,7 +37,12 @@ $(document).on('turbolinks:load', function() {
   }
 
   init();
-  $(window).resize(function(){
-    init();
-  });
+
+  if (screenfull.enabled) {
+    screenfull.exit();
+
+    $('#phrase-show #content').on('click', function() {
+      screenfull.toggle();
+    })
+  }
 });

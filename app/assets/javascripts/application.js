@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require jquery/dist/jquery
 //= require jquery-textfill/source/jquery.textfill.min
+//= require screenfull/dist/screenfull
 //= require_tree .

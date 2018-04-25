@@ -13,7 +13,6 @@ $(document).on('turbolinks:load', function() {
 
       $('#content').css('width', '90vh');
       $('#content').css('height', '90vw');
-      $('#content').html('<span>rotated</span>');
     } else {
       $('#content').css('webkitTransform', '');
       $('#content').css('mozTransform', '');
@@ -23,7 +22,6 @@ $(document).on('turbolinks:load', function() {
 
       $('#content').css('width', '90vw');
       $('#content').css('height', '90vh');
-      $('#content').html('<span>normal</span>');
     }
   }
 

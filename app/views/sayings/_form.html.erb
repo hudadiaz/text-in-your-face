@@ -1,0 +1,54 @@
+<%= form_with(model: saying) do |form| %>
+  <% if saying.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <strong>
+        <%= pluralize(saying.errors.count, "error") %>
+        prohibited this saying from being saved:
+      </strong>
+
+      <ul>
+      <% saying.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%=
+      form.text_area :thing_content,
+      value: content,
+      rows: 5,
+      maxlength: Thing::MAX_LENGTH,
+      placeholder: 'Say something',
+      class: 'form-control'
+    %>
+  </div>
+
+  <%= form.fields_for :style do |style| %>
+    <%= style.hidden_field :id %>
+
+    <div class="form-group">
+      <%= style.select :theme, themes_options, {}, class: 'custom-select' %>
+    </div>
+
+    <div class="form-group">
+      <%= style.select :font, fonts_options, {}, class: 'custom-select' %>
+    </div>
+
+    <div class="form-group">
+      <%=
+        style.text_area :css,
+        rows: 10,
+        placeholder: 'Custom CSS',
+        class: 'form-control'
+      %>
+    </div>
+  <% end %>
+
+
+  <div class="form-group text-right">
+    <%= link_to t('clear'), new_saying_path, class: 'btn btn-light' %>
+    <%= form.submit t('say_it'), class: 'btn btn-primary', data: { disable_with: 'Submitting...' } %>
+  </div>
+<% end %>

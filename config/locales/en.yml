@@ -1,5 +1,3 @@
 en:
-  hello: "Hello world"
-  activerecord:
-    models:
-      phrase: text
+  say_it: Say it!
+  clear: Clear

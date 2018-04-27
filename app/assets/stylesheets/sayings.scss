@@ -1,4 +1,4 @@
-#phrase-show {
+#saying-show {
   height: 100vh;
   display: flex;
 
@@ -26,17 +26,11 @@
     animation: Gradient 45s ease infinite;*/
   }
 
-   #prefLink, #editLink {
+  #editLink {
     position: fixed;
     right: 0.5rem;
-  }
-
-  #prefLink {
-    top: 0.5rem;
-  }
-
-  #editLink {
     bottom: 0.5rem;
+    color: #ccc;
   }
 
   @-webkit-keyframes Gradient {

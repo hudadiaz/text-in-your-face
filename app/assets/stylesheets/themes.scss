@@ -1,0 +1,19 @@
+#saying-show {
+  &.light {
+    color: #343a40;
+    background: #fff;
+
+    #editLink {
+      color: #ccc;
+    }
+  }
+
+  &.dark {
+    color: #f8f9fa;
+    background: #343a40;
+
+    #editLink {
+      color: #777;
+    }
+  }
+}

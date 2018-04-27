@@ -1,0 +1,13 @@
+<div id="saying-show" class="<%= @saying.theme %>">
+  <div id="content">
+    <span><%= @saying.content %></span>
+  </div>
+  
+  <%= link_to 'Edit', edit_saying_path(@saying), id: 'editLink', class: 'btn' %>
+</div>
+
+<style>
+  #saying-show #content {
+    font-family: <%= @saying.font.html_safe %>;
+  }
+</style>

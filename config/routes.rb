@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root 'phrases#new'
-  resources :phrases, except: [:index, :destroy], path: '/'
+  root 'sayings#new'
+  resources :sayings, except: [:index, :destroy], path: '/'
 end

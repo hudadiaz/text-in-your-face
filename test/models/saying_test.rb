@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PhraseTest < ActiveSupport::TestCase
+class SayingTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

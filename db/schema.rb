@@ -14,27 +14,13 @@ ActiveRecord::Schema.define(version: 2018_04_26_111208) do
 
   create_table "sayings", force: :cascade do |t|
     t.string "hashid", null: false
-    t.integer "thing_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["hashid"], name: "index_sayings_on_hashid", unique: true
-    t.index ["thing_id"], name: "index_sayings_on_thing_id"
-  end
-
-  create_table "styles", force: :cascade do |t|
-    t.integer "saying_id"
+    t.string "content"
     t.string "theme"
     t.string "font"
     t.string "css"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["saying_id"], name: "index_styles_on_saying_id"
-  end
-
-  create_table "things", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["hashid"], name: "index_sayings_on_hashid", unique: true
   end
 
 end

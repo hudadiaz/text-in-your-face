@@ -2,7 +2,7 @@ class SayingsController < ApplicationController
   before_action :set_saying, only: [:show, :edit, :update]
 
   def index
-    head 501
+    @sayings = Saying.all
   end
 
   def show
@@ -12,7 +12,6 @@ class SayingsController < ApplicationController
 
   def new
     @saying = Saying.new
-    @saying.build_style
     set_meta_tags title: 'Shout in text!',
                   description: 'Display large text on your screen'
   end
@@ -40,7 +39,7 @@ class SayingsController < ApplicationController
         format.html { redirect_to @saying }
         format.json { render :show, status: :created, location: @saying }
       elsif 
-        format.html { render :new }
+        format.html { render :show }
         format.json { render json: @saying.errors, status: :unprocessable_entity }
       end
     end
@@ -56,6 +55,10 @@ class SayingsController < ApplicationController
     end
 
     def saying_params
-      params.require(:saying).permit(:thing_content, style_attributes: [:id, :theme, :font, :css])
+      if @saying.present? && !@saying.editable?
+        params.require(:saying).permit(:theme, :font, :css)
+      else
+        params.require(:saying).permit(:theme, :font, :css, :content)
+      end
     end
 end

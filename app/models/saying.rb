@@ -1,33 +1,44 @@
 class Saying < ApplicationRecord
-  belongs_to :thing
-  has_one :style
-  accepts_nested_attributes_for :style
-
-  delegate :content, to: :thing
-  delegate :theme, :font, :css, to: :style
-
-  attr_accessor :thing_content
+  DEFAULT_THEME = 'light'
+  DEFAULT_FONT = 'inherit'
+  MAX_LENGTH = 120
+  EDITABLE_DURATION = 5.minutes
 
   before_validation :generate_hashid, on: :create
-  before_validation :set_thing
 
   validates_presence_of :hashid
+  validate :content_editable
+  validates :content,
+            presence: true,
+            length: { maximum: MAX_LENGTH }
 
   def to_param
     hashid
   end
 
-  private
-
-  def set_thing
-    self.thing = Thing.find_or_create_by(content: thing_content)
-    errors.add :thing, thing.errors.full_messages.to_sentence \
-      unless self.thing.persisted?
+  def theme
+    super || DEFAULT_THEME
   end
+
+  def font
+    super || DEFAULT_FONT
+  end
+
+  def editable?
+    return true unless persisted?
+    return Time.now - created_at < EDITABLE_DURATION if updated_at.nil?
+    Time.now - updated_at < EDITABLE_DURATION
+  end
+
+  private
 
   def generate_hashid
     while \
       Saying.find_by(hashid: self.hashid = SecureRandom.urlsafe_base64(6))
     end
+  end
+
+  def content_editable
+    errors.add :content, 'cannot be edited' if content_changed? && !editable?
   end
 end

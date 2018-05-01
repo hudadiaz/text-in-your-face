@@ -3,8 +3,10 @@
     color: #343a40;
     background: #fff;
 
-    #editLink {
-      color: #ccc;
+    .buttons {
+      a {
+        color: #ccc;
+      }
     }
   }
 
@@ -12,8 +14,10 @@
     color: #f8f9fa;
     background: #343a40;
 
-    #editLink {
-      color: #777;
+    .buttons {
+      a {
+        color: #777;
+      }
     }
   }
 }

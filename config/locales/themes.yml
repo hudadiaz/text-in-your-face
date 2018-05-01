@@ -1,0 +1,25 @@
+en:
+  themes:
+    light: >
+            body {
+              color: #343a40;
+              background: #fff;
+
+              .buttons {
+                a {
+                  color: #ccc;
+                }
+              }
+            }
+
+    dark: >
+            body {
+              color: #f8f9fa;
+              background: #343a40;
+
+              .buttons {
+                a {
+                  color: #777;
+                }
+              }
+            }

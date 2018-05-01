@@ -1,4 +1,4 @@
-<%= form_with(model: saying, local: true) do |form| %>
+<%= form_with(model: saying) do |form| %>
   <% if saying.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <strong>
@@ -20,17 +20,23 @@
       rows: 5,
       maxlength: Saying::MAX_LENGTH,
       placeholder: 'Say something',
-      class: 'form-control',
-      disabled: !form.object.editable?
+      class: 'form-control'
     %>
   </div>
 
   <div class="form-group">
-    <%= form.select :theme, themes_options, {}, class: 'form-control' %>
+    <%= form.select :theme, theme_options, {}, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.select :font, fonts_options, {}, class: 'form-control' %>
+    <%= form.select :font, {}, {}, { class: 'form-control' } do %>
+      <% font_options.each do |font_name| %>
+        <%= "<option value='#{font_name}'\
+          style='font-family:#{font_name};'\
+          #{'selected' if font_name == form.object.font}
+          >#{font_name}</option>".html_safe %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="form-group">

@@ -7,7 +7,7 @@ class Saying < ApplicationRecord
   before_validation :generate_hashid, on: :create
 
   validates_presence_of :hashid
-  validate :content_editable
+  validate :content_editable, on: :update
   validates :content,
             presence: true,
             length: { maximum: MAX_LENGTH }
@@ -39,6 +39,6 @@ class Saying < ApplicationRecord
   end
 
   def content_editable
-    errors.add :content, 'cannot be edited' if content_changed? && !editable?
+    errors.add :content, 'cannot be edited' unless editable?
   end
 end

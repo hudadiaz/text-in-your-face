@@ -1,5 +1,6 @@
 class SayingsController < ApplicationController
   before_action :set_saying, only: [:show, :edit, :update]
+  before_action :check_editable, only: [:edit, :update]
 
   def index
     @sayings = Saying.all
@@ -54,11 +55,11 @@ class SayingsController < ApplicationController
       @saying = Saying.find_by(hashid: params[:id])
     end
 
+    def check_editable
+      return redirect_to @saying unless @saying.editable?
+    end
+
     def saying_params
-      if @saying.present? && !@saying.editable?
-        params.require(:saying).permit(:theme, :font, :css)
-      else
-        params.require(:saying).permit(:theme, :font, :css, :content)
-      end
+      params.require(:saying).permit(:theme, :font, :css, :content)
     end
 end

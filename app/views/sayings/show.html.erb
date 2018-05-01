@@ -3,11 +3,20 @@
     <span><%= @saying.content %></span>
   </div>
   
-  <%= link_to 'Edit', edit_saying_path(@saying), id: 'editLink', class: 'btn' %>
+  <div class="buttons">
+    <%= link_to new_saying_path, id: 'newBtn', class: 'btn' do %>
+      <i class="material-icons">add</i>
+    <% end %>
+    <% if @saying.editable? %>
+      <%= link_to edit_saying_path(@saying), id: 'editbtn', class: 'btn' do %>
+        <i class="material-icons">mode_edit</i>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <style>
   #saying-show #content {
-    font-family: <%= @saying.font.html_safe %>;
+    font-family: '<%= @saying.font %>';
   }
 </style>

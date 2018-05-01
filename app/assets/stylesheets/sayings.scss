@@ -26,11 +26,14 @@
     animation: Gradient 45s ease infinite;*/
   }
 
-  #editLink {
+  .buttons {
     position: fixed;
     right: 0.5rem;
     bottom: 0.5rem;
-    color: #ccc;
+    
+    a {
+      color: #ccc;
+    }
   }
 
   @-webkit-keyframes Gradient {
